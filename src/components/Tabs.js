@@ -1,26 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-const Tabs = ({ tabs }) => {
-  const [activeTab, setActiveTab] = useState(0);
+function Tabs({arr}){
+const [tab, setTab] = useState(0);
 
-  return (
-    <div className="tabs-container">
-      <ul className="tabs-list">
-        {tabs.map((tab, index) => (
+const handleTabClick = (i) => {
+    setTab(i);
+  };
+    return (
+    <>
+     <ul>
+        {arr.map((tab, i) => (
           <li
-            key={index}
-            className={`tab ${activeTab === index ? 'active' : ''}`}
-            onClick={() => setActiveTab(index)}
-          >
+            key={i}
+            onClick={() => handleTabClick(i)}>
             {tab.title}
           </li>
         ))}
       </ul>
-      <div className="tab-content">
-        {tabs[activeTab].content}
-      </div>
-    </div>
-  );
-};
+      <p>
+        {arr[tab].content}
+      </p>
+    </>
+);
+}
 
 export default Tabs;
